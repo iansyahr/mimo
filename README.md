@@ -6,3 +6,11 @@ Mimo is a website that lets you store any text and share it with others through 
 ## Features
 coming soon
 ## Why did you make this?
+
+<div style="display: flex; align-items: center;">
+    <div style="width: 100px; height: 100px; background-color: black; border-radius: 50%; margin-right: 20px;"></div>
+      <div>
+        <div style="font-size: 20px; font-weight: bold;">Ini Nama Produk</div>
+        <div style="font-size: 16px;">ini deskripsi produk</div>
+      </div>
+</div>
