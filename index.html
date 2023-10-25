@@ -30,6 +30,9 @@
     <!-- for my own CSS -->
     <link rel="stylesheet" type="text/css" href="src/style.css" media="all" />
 
+    <!-- for my own JS-->
+    <script language="javascript" type="application/javascript" src="server/compressbrotli.js"></script>
+
     <!-- for Snackbar -->
     <link rel="stylesheet" type="text/css" href="https://cdn.iyariv.workers.dev/js-snackbar.css" media="all" />
     <script src="https://cdn.iyariv.workers.dev/js-snackbar.js"></script>
@@ -78,9 +81,11 @@
         let inputElement = document.getElementById("input");
         let outputElement = document.getElementById("outputLink");
         let inputValue = inputElement.value;
-        let compress = compressBrotli(inputValue);
-        let result = `https://demimo.deno.dev/get?tp=txt&ct=${compress}`
-        outputElement.value = result;
+        brotliCompress(inputValue).then((hasil) => {
+          console.log(hasil);
+          let result = `https://demimo.deno.dev/get?tp=txt&ct=${hasil}`
+          outputElement.value = result;
+        });
       });
 
       function copyConfig(outputId) {
