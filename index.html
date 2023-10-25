@@ -75,10 +75,11 @@
     </div>
     <script>
       document.getElementById("nya").addEventListener("click", () => {
-        const inputElement = document.getElementById("input");
-        const outputElement = document.getElementById("outputLink");
-        const inputValue = inputElement.value;
-        const result = configClash(inputValue);
+        let inputElement = document.getElementById("input");
+        let outputElement = document.getElementById("outputLink");
+        let inputValue = inputElement.value;
+        let compress = compressBrotli(inputValue);
+        let result = `https://demimo.deno.dev/get?tp=txt&ct=${compress}`
         outputElement.value = result;
       });
 
