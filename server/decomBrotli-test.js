@@ -1952,11 +1952,9 @@ function decomBrotli(input) {
   let decoder = new TextDecoder("utf-8").decode(decompressed);
   return decoder;
 }
-var com = "0\u579D\u51D8\u95CD\u7FD3\u82DA\u797F\u7033\u506E";
-console.log(decomBrotli(com));
 
 async function handleRequest(req) {
-  const url = new URL(req.url); //url example : https://example.com/?tp=txt#<Unicode string here>
+  const url = new URL(req.url); //url example : https://demimo.deno.dev/get?tp=txt&ct=0垝凘闍翓苚祿瀳偮
   const path = url.pathname
   const error = "Yah error"
   const decompress = "Entah"
