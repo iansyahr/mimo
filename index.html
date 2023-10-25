@@ -54,7 +54,7 @@
           <h4>
             <b>Input your text here</b>
           </h4>
-          <textarea id="input" placeholder="Halo Dunia"></textarea>
+          <textarea id="input"></textarea>
           <br />
           <div class="tombol">
             <button class="button" id="nya">Generate Link</button>
@@ -79,6 +79,7 @@
     <script>
       document.getElementById("nya").addEventListener("click", () => {
         let inputElement = document.getElementById("input");
+        console.log(inputElement)
         let outputElement = document.getElementById("outputLink");
         let inputValue = inputElement.value;
         console.log(inputValue)
