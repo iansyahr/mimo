@@ -77,9 +77,15 @@
       </div>
     </div>
     <script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("input"), {
+        lineNumbers: true,
+        mode: "text/x-perl"
+      });
+
       document.getElementById("nya").addEventListener("click", () => {
         let inputElement = document.getElementById("input");
         console.log(inputElement)
+        console.log(editor.getValue())
         let outputElement = document.getElementById("outputLink");
         let inputValue = inputElement.value;
         console.log(inputValue)
@@ -104,11 +110,6 @@
         // Copy the text inside the text field
         navigator.clipboard.writeText(copyText.value);
       }
-
-      var editor = CodeMirror.fromTextArea(document.getElementById("input"), {
-        lineNumbers: true,
-        mode: "text/x-perl"
-      });
     </script>
   </body>
   <footer>
