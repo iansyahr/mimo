@@ -1955,7 +1955,9 @@ function detectMIMEType(type) {
 async function handleRequest(req: Request) {
   const url = new URL(req.url); //url example : https://example.com/?tp=txt#<Unicode string here>
   const data = url.hash.substring(1);
+  console.log("ini data hash " + data)
   const typeValue = url.searchParams.get('tp')
+  console.log("ini data type " +typeValue)
   const mimeType = detectMIMEType(typeValue)
   const decompress = decomBrotli(data)
   const error = "Input type first"

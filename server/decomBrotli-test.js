@@ -1923,6 +1923,30 @@ var Kw = ew(Rw());
 var cl = (v) => (0, Tw.decompress)((0, Kw.decodeToUint8Array)(v));
 
 // index.js
+
+function detectMIMEType(type) {
+  let typeData = ""
+  if (type) {
+      const extension = type;
+      if (extension === 'html') {
+          typeData = "text/html;charset=utf-8"
+      } else if (extension === 'txt'){
+          typeData = "text/plain;charset=utf-8"
+      } else if (extension === 'css') {
+          typeData = "text/css"
+      } else if (extension === 'js') {
+          typeData = "application/javascript"
+      } else if (['png', 'jpg', 'jpeg', 'gif', 'webp', 'avif'].includes(extension)) {
+          typeData = `image/${extension}`
+      } else {
+          typeData = `application/${extension}`;
+      }
+  } else {
+      console.log('URL tidak memiliki ekstensi');
+  }
+  return typeData
+}
+
 function decomBrotli(input) {
   const decompressed = cl(input);
   let decoder = new TextDecoder("utf-8").decode(decompressed);
@@ -1930,10 +1954,28 @@ function decomBrotli(input) {
 }
 var com = "0\u579D\u51D8\u95CD\u7FD3\u82DA\u797F\u7033\u506E";
 console.log(decomBrotli(com));
-/*!
- * The buffer module from node.js, for the browser.
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
+async function handleRequest(req) {
+  const url = new URL(req.url); //url example : https://example.com/?tp=txt#<Unicode string here>
+  const path = url.pathname
+  const error = "Yah error"
+  const decompress = "Entah"
+  if (path === '/' || path === '') {
+      return new Response(decompress,{headers: {"content-type": `text/plain`}, status:200});
+  } else if (path === '/get'){
+    const typeValue = url.searchParams.get('tp')
+    const contentValue = url.searchParams.get('ct')
+    if(typeValue){
+      const typeContent = detectMIMEType(typeValue)
+      const decompressData = decomBrotli(contentValue)
+      return new Response(decompressData,{headers: {"content-type": `${typeContent}`},status:200})
+    } else {
+      return new Response("Buset",{headers: {"content-type": "text/plan"},status:400})
+    }
+  } 
+  else {
+      return new Response(error,{headers: {"content-type": "text/plain"}, status:404})
+  }
+}
+
+Deno.serve(handleRequest);
