@@ -81,6 +81,7 @@
         let inputElement = document.getElementById("input");
         let outputElement = document.getElementById("outputLink");
         let inputValue = inputElement.value;
+        console.log(inputValue)
         brotliCompress(inputValue).then((hasil) => {
           console.log(hasil);
           let result = `https://demimo.deno.dev/get?tp=txt&ct=${hasil}`
