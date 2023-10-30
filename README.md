@@ -6,3 +6,11 @@ Mimo is a website that lets you share any text with others through links without
 ## Features
 coming soon
 ## Why did you make this?
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
